@@ -1,6 +1,5 @@
 """Day 2: Dot Product, Norms, Cosine Similarity """
 import numpy as np
-import matplotlib.pyplot as plt
 
 a = np.array([1, 0])
 b = np.array([2, 0])
@@ -20,15 +19,15 @@ print(f"np.dot(a,b) = {np.dot(a, b)}")
 def norm(a):
     return np.sqrt(a[0]**2 + a[1]**2)
 
-print("norm(a) =", norm(a))
-print("np.linalg.norm(a) =", np.linalg.norm(a))
+print(f"norm(a) manual = {norm(a)}")
+print(f"np.linalg.norm(a) = {np.linalg.norm(a)}")
 
 def cosine_similarity(a, b):
     return dotproduct(a, b) / (norm(a) * norm(b))
 
-print("cosine_similarity(a, b) =", cosine_similarity(a, b))
-print("cosine_similarity(x, y) =", cosine_similarity(x, y))
-print("cosine_similarity(c, d) =", cosine_similarity(c, d))
+print(f"cosine_similarity(a, b) = {cosine_similarity(a, b)}")
+print(f"cosine_similarity(x, y) = {cosine_similarity(x, y)}")
+print(f"cosine_similarity(c, d) = {cosine_similarity(c, d)}")
 angle = np.arccos(cosine_similarity(a, b))
 check = norm(a) * norm(b) * np.cos(angle)
 print(f"angle between a,b (radians) = {angle}")
