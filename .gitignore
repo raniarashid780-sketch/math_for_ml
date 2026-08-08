@@ -5,3 +5,4 @@ __pycache__/
 venv/
 *.png
 .DS_Store
+!assets/*.png
