@@ -3,8 +3,7 @@ import numpy as np
 A = np.array([12, 15, 14, 10, 18, 200, 13, 16, 14, 11])
 
 def manual_mean(a):
-    a = (np.sum(a)/a.size)
-    return a
+    return np.sum(a) / a.size
 
 def manual_variance(a):
     a = np.asarray(a).ravel()
@@ -30,7 +29,8 @@ print(f"Mean :{np.mean(A)}  Median :{np.median(A)}")
 #  The median, on the other hand, is less sensitive to extreme values and better represents the central tendency of the majority of the data.
 # Therefore, in this case, the median is closer to where most of the data actually sits.
 
-print(np.percentile(A, [25, 50, 75]))
+p25, p50, p75 = np.percentile(A, [25, 50, 75])
+print(f"25th percentile: {p25}, Median (50th): {p50}, 75th percentile: {p75}")
 
 # Why does high variance in a feature matter before training a model?
 # High variance in a feature indicates that the data points are spread out over a wide range of values. This can lead to instability in model training, as the model may struggle to learn patterns from features that have inconsistent or extreme values.
