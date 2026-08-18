@@ -1,8 +1,10 @@
 """Day 17: Central Limit Theorem"""
 import numpy as np
 import matplotlib.pyplot as plt
+from pathlib import Path
+
 np.random.seed(42)
-np.random.randint(1, 7)
+
 def sample_means(n_rolls, n_trials):
     means = []
     for _ in range(n_trials):
@@ -10,24 +12,41 @@ def sample_means(n_rolls, n_trials):
         means.append(rolls.mean())
     return means
 
-n_rolls = 30
 n_trials = 1000
-means = sample_means(n_rolls, n_trials)
 
-print(f"Mean of sample means (N={n_rolls}): {np.mean(means):.4f}")
-print(f"Standard deviation of sample means (N={n_rolls}): {np.std(means):.4f}")
+means_n1 = sample_means(1, n_trials)
+means_n30 = sample_means(30, n_trials)
 
-# Theoretical standard deviation for a single die roll
-std_N1 = np.std(np.random.randint(1, 7, size=100000))
-# Theoretical standard deviation for the sample mean
-theoretical_std = std_N1 / np.sqrt(n_rolls)
-print(f"Theoretical standard deviation (N={n_rolls}): {theoretical_std:.4f}")
-np.isclose(np.std(means), theoretical_std, rtol=0.1)  # Allowing 10% relative tolerance
+std_n1 = np.std(means_n1)
+std_n30 = np.std(means_n30)
+theoretical_std_n30 = std_n1 / np.sqrt(30)
 
-plt.hist(means, bins=30, edgecolor='black')
-plt.xlabel('Sample Mean')
-plt.ylabel('Frequency')
-plt.title('Distribution of Sample Means')
-plt.savefig("D:/math_for_ml/assets/central_limit_theorem.png")
+print(f"Mean of sample means (N=1): {np.mean(means_n1):.4f}")
+print(f"Std of sample means (N=1): {std_n1:.4f}")
+print(f"Mean of sample means (N=30): {np.mean(means_n30):.4f}")
+print(f"Std of sample means (N=30): {std_n30:.4f}")
+print(f"Theoretical std (N=30) = std_N1 / sqrt(30): {theoretical_std_n30:.4f}")
+
+matches = np.isclose(std_n30, theoretical_std_n30, rtol=0.1)
+print(f"Simulated std matches theoretical prediction (10% tolerance): {matches}")
+assert matches, "Simulated std deviates too far from CLT prediction"
+
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+axes[0].hist(means_n1, bins=6, edgecolor='black')
+axes[0].set_title("N=1 (single roll)")
+axes[0].set_xlabel("Sample Mean")
+axes[0].set_ylabel("Frequency")
+
+axes[1].hist(means_n30, bins=30, edgecolor='black')
+axes[1].set_title("N=30 (averaged)")
+axes[1].set_xlabel("Sample Mean")
+axes[1].set_ylabel("Frequency")
+
+plt.tight_layout()
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+output_path = SCRIPT_DIR.parent / "assets" / "central_limit_theorem.png"
+plt.savefig(output_path)
+print(f"Plot saved to {output_path}")
+
 plt.show()
-
