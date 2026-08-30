@@ -1,6 +1,7 @@
 """Day 13: Distributions"""
 import numpy as np
 import matplotlib.pyplot as plt
+from pathlib import Path
 np.random.seed(42)
 normal_data = np.random.normal(loc=0, scale=1, size=1000)    # mean=0, std=1
 binomial_data = np.random.binomial(n=20, p=0.3, size=1000)   # 20 trials, 30% success
@@ -31,5 +32,7 @@ axes[2].set_xlabel('Value')
 axes[2].set_ylabel('Frequency')
 
 plt.tight_layout()
-plt.savefig('D:/math_for_ml/assets/distributions.png', dpi=100, bbox_inches='tight')
+SCRIPT_DIR = Path(__file__).resolve().parent
+output_path = SCRIPT_DIR.parent / "assets" / "distributions.png"
+plt.savefig(output_path)
 plt.show()

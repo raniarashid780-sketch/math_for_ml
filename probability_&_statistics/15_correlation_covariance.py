@@ -1,6 +1,7 @@
 """Day 15: Correlation & Covariance"""
 import numpy as np
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 np.random.seed(42)
 x = np.random.randn(100)
@@ -49,8 +50,9 @@ axes[1].set_ylabel("z")
 
 plt.tight_layout()
 plt.show()
-plt.savefig("D:/math_for_ml/assets/correlation_covariance.png")
-print("Plot saved to ../assets/correlation_covariance.png")
+SCRIPT_DIR = Path(__file__).resolve().parent
+output_path = SCRIPT_DIR.parent / "assets" / "correlation_covariance.png"
+plt.savefig(output_path)
 
 # Real correlation-without-causation example:
 # Countries' per-capita chocolate consumption correlates positively with

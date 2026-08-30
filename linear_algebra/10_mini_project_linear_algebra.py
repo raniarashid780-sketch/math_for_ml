@@ -1,7 +1,7 @@
 """Day 10: PCA from scratch — linear algebra capstone"""
 import numpy as np
 import matplotlib.pyplot as plt
-
+from pathlib import Path
 # Step 0 — create some fake 2D data (50 points, 2 features, correlated)
 np.random.seed(42)
 X = np.random.randn(50, 2)
@@ -47,5 +47,7 @@ ax.quiver(0, 0, pc1[0]*2, pc1[1]*2, color='red', angles='xy',
 ax.set_aspect('equal')
 ax.legend()
 plt.title('PCA — data cloud + first principal component')
-plt.savefig("D:/math_for_ml/assets/pca_visualization.png", dpi=100, bbox_inches='tight')
+SCRIPT_DIR = Path(__file__).resolve().parent
+output_path = SCRIPT_DIR.parent / "assets" / "pca_visualization.png"
+plt.savefig(output_path, dpi=100, bbox_inches='tight')
 plt.show()
