@@ -1,7 +1,8 @@
-
+"""Day 19: partial derivatives."""
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from pathlib import Path
+import numpy as np
 # Task 1
 # Pick a simple 2-variable function, e.g. f(x, y) = x**2 + 3*x*y + y**2.
 
@@ -37,7 +38,6 @@ df_dy_numeric = numerical_partial(f, x0, y0, 'y')
 print(f"df/dx: analytic={df_dx_analytic}, numeric={df_dx_numeric:.5f}")
 print(f"df/dy: analytic={df_dy_analytic}, numeric={df_dy_numeric:.5f}")
 
-import numpy as np
 assert np.isclose(df_dx_analytic, df_dx_numeric)
 assert np.isclose(df_dy_analytic, df_dy_numeric)
 
@@ -55,3 +55,4 @@ ax.plot_surface(X, Y, Z, cmap='viridis')
 SCRIPT_DIR = Path(__file__).resolve().parent
 output_path = SCRIPT_DIR.parent / "assets" / "partial_derivatives_surface.png"
 plt.savefig(output_path)
+plt.show()
