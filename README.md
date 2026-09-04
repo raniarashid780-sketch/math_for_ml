@@ -30,7 +30,7 @@ eigenvalues/eigenvectors, rank, and PCA from scratch — no sklearn.
 ## Status
 In progress — started Aug 2, 2026.
 - ✅ Linear Algebra (Files 01–10) — complete
-- ⬜ Probability & Statistics (Files 11–18)
+- ✅ Probability & Statistics (Files 11–18)
 - ⬜ Calculus & Optimization (Files 19–23)
 - ⬜ Linear Algebra Advanced (Files 24–25)
 - ⬜ Information Theory (Files 26–27)
